@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reddit Communities Detection</title>
+
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="/js/main.js"></script>
+
+
+
+</head>
+<body>
+  <form class="form body-item">
+    <div class="form-item">
+      <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
+      <label for="number">Insert a number (50 - 5000)</label>
+    </div>
+
+    <div class="form-item">
+      <button id="form-submit" type="button">
+        Generate
+      </button>
+    </div>
+  </form>
+
+  <div id="graph-area" class="body-item">
+    <div class="spinner hide"></div>
+  </div>
+
+  <footer class="footer body-item">
+    <div>
+      Reddit Communities Detector.
+    <br />
+    All rights reserved. &copy;
+    <a href="/">Source code</a>
+    </div>
+  </footer>
+
+
+</body>
+</html>
