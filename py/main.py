@@ -1,6 +1,5 @@
 from py import load_graph, ScreenSizes
 from js import addCommunities
-from pyscript import display
 
 
 def run_program(nodes: int, target="graph", image_size=ScreenSizes.S1080P):

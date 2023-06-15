@@ -87,13 +87,17 @@ class Graph:
 
         self.communities_colors = [color_map(self.partition[node]) for node in self.communities.nodes()]
 
-        return [
+        communities = [
             [node for node in self.partition.keys() if self.partition[node] == com]
             for com in set(self.partition.values())
-        ], list(set(pcolors.rgb2hex(color) for color in self.communities_colors))
+        ]
+        colors = [pcolors.rgb2hex(color_map(self.partition[nodes[0]])) for nodes in communities if nodes]
+
+        return communities, colors
 
 
 def load_graph(nodes: int):
     return Graph(open_url(
         'https://raw.githubusercontent.com/oliverTuesta/reddit-communities/main/soc-redditHyperlinks-title-5000.tsv'),
         'SOURCE_SUBREDDIT', 'TARGET_SUBREDDIT', n_nodes=nodes)
+
