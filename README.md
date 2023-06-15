@@ -21,7 +21,7 @@ This project aims to detect communities on Reddit using graph traversal and sear
 
 You view the page on
 
-- [Netlify](https://develop--reddit-communities-detector.netlify.app/)
+- [Netlify](https://reddit-communities-detector.netlify.app/)
 - [GitHub-Pages](https://yoimer-davila.github.io/reddit-communities/)
 
 
