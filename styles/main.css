@@ -14,6 +14,12 @@ body {
   align-items: center;
 }
 
+#communities {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+
 .footer, #graph-area {
   justify-content: center;
   text-align: center;
@@ -49,6 +55,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 
 .form-item > label {
   font-weight: bolder;

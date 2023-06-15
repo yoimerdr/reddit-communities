@@ -14,18 +14,28 @@
   <script src="./js/main.js"></script>
   <py-config>
     packages = ["matplotlib", "pandas", "networkx", "scipy"]
+
     [[fetch]]
-    files = ["./py/graph.py", "./py/__init__.py", "./py/web.py", "./py/main.py"]
+    from = "https://raw.githubusercontent.com/Yoimer-Davila/reddit-communities/develop/"
+    files = [
+      "py/graph.py",
+      "py/__init__.py",
+      "py/web.py",
+      "py/main.py"
+    ]
+
 
   </py-config>
 
 </head>
 <body>
   <form class="form body-item">
+
     <div class="form-item">
       <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
       <label for="number">Insert a number (50 - 5000)</label>
     </div>
+
     <div class="form-item">
       <select name="size" id="size" >
         <option value="S600P">600PX</option>
@@ -36,6 +46,7 @@
       </select>
       <label for="size">Select a image size</label>
     </div>
+
     <div class="form-item">
       <select name="zoom" id="zoom">
         <option value="use">Use</option>
@@ -43,10 +54,17 @@
       </select>
       <label for="zoom">Use zoom?</label>
     </div>
+
     <div class="form-item">
       <button py-onclick="run()" id="form-submit" type="button">
         Generate
       </button>
+    </div>
+
+    <div class="form-item">
+      <div id="communities">
+
+      </div>
     </div>
   </form>
 
@@ -74,6 +92,7 @@
           enable_zoom = str(Element("zoom").value) == "use"
           display(run_program(int(Element("number").value), image_size=size_switch_option(option)), target=div_target, append=False)
           addZoomToGraph(enable_zoom)
+
   </py-script>
 </body>
 </html>

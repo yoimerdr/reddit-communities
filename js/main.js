@@ -8,6 +8,21 @@ function graphZoom() {
     zoomEnabled: graphZoomEnabled
   })
 }
+
+function addCommunities(colors) {
+  const div = document.getElementById("communities");
+  div.innerHTML = "";
+  let index = 1;
+  for(let color of colors) {
+    const community = document.createElement("div")
+    community.innerHTML = "Community " + index
+    community.style.color = color
+    div.appendChild(community)
+    index++
+  }
+}
+
+
 function addZoomToGraph(enabled=true) {
   graphZoomEnabled = enabled
   const image = document.getElementById("graph").querySelector("img");

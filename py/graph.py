@@ -1,6 +1,8 @@
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
+import matplotlib.colors as pcolors
+import networkx.algorithms.community as community
 from pyodide.http import open_url
 
 
@@ -38,30 +40,57 @@ class Graph:
         self.arrow_size = 5
         self.fig = None
 
+        self.partition = None
+        self.communities = None
+        self.communities_colors = []
+
     def change_size(self, screen_size: tuple[int, int]):
         # change the axes value with the specific pixels size
         width, height = screen_size
         self.fig, self.axes = plt.subplots(figsize=(width / 100, height / 100))
 
-    def draw(self):
+    def __draw(self, g: nx.Graph, colors=None):
         if self.axes is None:
             self.change_size(ScreenSizes.S600P)  # default image size
 
         self.axes.set_position([0.005, 0.0, 0.98, 0.965])  # change the axes position to try to fill all image size
         self.axes.set_axis_off()
-        plt.title(f'Graph with {self.n_nodes} nodes')
+        plt.title(f'Graph with {g.number_of_nodes()} nodes')
+        colors = colors if colors is not None else self.node_color
         return nx.draw_networkx(
-            self.subgraph,
+            g,
             with_labels=self.has_labels,
             pos=self.position,
             ax=self.axes,
             node_size=self.node_size,
-            node_color=self.node_color,
+            node_color=colors,
             font_size=self.font_size,
             width=self.edge_width,
             arrowsize=self.arrow_size,
             edge_color=self.edge_color
-        )  # draw the subgraph
+        )
+
+    def draw_subgraph(self):
+        return self.__draw(self.subgraph)
+
+    def draw_communities(self):
+        return self.__draw(self.communities, self.communities_colors)
+
+    def detect_communities(self):
+        communities = community.louvain_communities(self.subgraph.to_undirected())
+        self.partition = {com: index for index, item in enumerate(communities) for com in item}
+
+        nx.set_node_attributes(self.subgraph, self.partition, "community")
+        self.communities = self.subgraph.subgraph(self.partition.keys())
+
+        color_map = plt.colormaps["tab10"]
+
+        self.communities_colors = [color_map(self.partition[node]) for node in self.communities.nodes()]
+
+        return [
+            [node for node in self.partition.keys() if self.partition[node] == com]
+            for com in set(self.partition.values())
+        ], list(set(pcolors.rgb2hex(color) for color in self.communities_colors))
 
 
 def load_graph(nodes: int):
