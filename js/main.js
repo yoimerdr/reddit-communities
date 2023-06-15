@@ -46,7 +46,7 @@ function addCommunities(colors, communities_proxy) {
       return ""
     let listItems = communities[i].map(item => `<li>${item}</li>`).join("\n");
     let grid = ""
-    if (communities[i].length > 40)
+    if (communities[i].length >= 35)
       grid = "display: grid; grid-template-columns: 1fr 1fr 1fr"
     return `<ul style="color: ${color}; list-style-type: none; padding: 2px; ${grid}">${listItems}</ul>`
   }
