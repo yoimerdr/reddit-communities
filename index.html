@@ -6,8 +6,11 @@
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
   <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
-  <script defer src="./js/jquery-1.8.3.min.js"></script>
-  <script defer src="./js/jquery.elevateZoom-3.0.8.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./js/jquery.elevateZoom-3.0.8.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="./styles/main.css" />
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -16,7 +19,7 @@
     packages = ["matplotlib", "pandas", "networkx", "scipy"]
 
     [[fetch]]
-    from = "https://raw.githubusercontent.com/Yoimer-Davila/reddit-communities/develop/"
+    from = "./"
     files = [
       "py/graph.py",
       "py/__init__.py",

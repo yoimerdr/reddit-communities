@@ -9,15 +9,51 @@ function graphZoom() {
   })
 }
 
-function addCommunities(colors) {
+function addCommunities(colors, communities_proxy) {
   const div = document.getElementById("communities");
   div.innerHTML = "";
   let index = 1;
+
+  let communities = []
+
+  for(let item of communities_proxy) {
+    let com = []
+    for(let community of item)
+      com.push(community)
+    communities.push(com)
+  }
+  function getCommunities(i, color="white") {
+    if(i > communities.length || i < 0)
+      return ""
+    let listItems = communities[i].map(item => `<li>${item}</li>`).join("\n");
+    return `<ul style="color: ${color}; list-style-type: none; padding: 2px">${listItems}</ul>`
+  }
   for(let color of colors) {
     const community = document.createElement("div")
     community.innerHTML = "Community " + index
     community.style.color = color
+    community.id = "community-" + index
     div.appendChild(community)
+
+    new jBox("Tooltip",{
+        attach: "#" + community.id,
+        theme: "TooltipDark",
+        position: {
+            x: "right",
+            y: "center"
+        },
+        outside: "x",
+        pointer: "top:15",
+        content: getCommunities(index - 1),
+        animation: "move",
+        adjustDistance: {
+            top: 55,
+            right: 5,
+            bottom: 5,
+            left: 5
+        },
+        zIndex: 4e3
+    })
     index++
   }
 }
