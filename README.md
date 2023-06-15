@@ -17,6 +17,14 @@ This project aims to detect communities on Reddit using graph traversal and sear
 -   Yoimer Davila
 
 
+## Use
+
+You view the page on
+
+- [Netlify](https://develop--reddit-communities-detector.netlify.app/)
+- [GitHub-Pages](https://yoimer-davila.github.io/reddit-communities/)
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
