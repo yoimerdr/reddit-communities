@@ -19,10 +19,12 @@ function manageHideElement(id, hideClass = "hide") {
 async function generate()  {
   manageHideElement("graph")
   manageHideElement("graph-spinner")
+  manageHideElement("communities-div")
   const run = pyscript.interpreter.globals.get('run');
   await run()
   manageHideElement("graph-spinner")
   manageHideElement("graph")
+  manageHideElement("communities-div")
 }
 
 function addCommunities(colors, communities_proxy) {
@@ -38,6 +40,7 @@ function addCommunities(colors, communities_proxy) {
       com.push(community)
     communities.push(com)
   }
+
   function getCommunities(i, color="white") {
     if(i > communities.length || i < 0)
       return ""

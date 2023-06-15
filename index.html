@@ -16,7 +16,7 @@
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <script src="./js/main.js"></script>
   <py-config>
-    packages = ["matplotlib", "pandas", "networkx", "scipy"]
+    packages = ["matplotlib", "pandas", "networkx", "scipy", "numpy"]
 
     [[fetch]]
     from = "./"
@@ -32,8 +32,7 @@
 
 </head>
 <body>
-  <form class="form body-item">
-
+  <div class="form body-item">
     <div class="form-item">
       <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
       <label for="number">Insert a number (50 - 5000)</label>
@@ -64,12 +63,11 @@
       </button>
     </div>
 
-    <div class="form-item">
+    <div class="form-item" id="communities-div">
       <div id="communities">
-
       </div>
     </div>
-  </form>
+  </div>
 
   <div id="graph-area" class="body-item">
     <div id="graph"></div>

@@ -2,22 +2,24 @@ body {
   font-size: 1rem;
   background-color: #1F1F1F;
   color: white;
-  display: flex;
+  display: grid;
   height: 100vh;
   margin: 0;
-  flex-direction: column;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .body-item {
-  flex: 1;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 #communities {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.5rem;
+  overflow-y: scroll;
+  max-height: 4rem;
 }
 
 .footer, #graph-area {
@@ -26,45 +28,38 @@ body {
 }
 
 #graph-area {
-  flex: 0.9;
   overflow: hidden;
 }
 
 #graph  img {
   margin: 0;
   height: 100%;
-  width: auto;
 }
 
 .footer, .form {
-  flex: 0.05;
+
 }
 
 .form {
-  padding: 20px;
+  padding: 5px 10px;
   border-radius: 5px;
   gap: 1.5rem;
-  justify-items: center;
-  max-height: 3.5%;
-
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr) 2fr;
 }
 
 .form-item {
-  display: grid;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+
 }
 
 
 .form-item > label {
   font-weight: bolder;
-  display: block;
-  margin-bottom: 10px;
 }
 
 .form-item > input[type="number"], .form-item > select {
-  min-width: 8rem;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -73,15 +68,15 @@ body {
 #form-submit {
   background-color: #4CAF50;
   color: white;
-  border: none;
-  padding: 10px 20px;
+  padding: 10px;
+  border: 1px solid #4CAF50;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
-
+  width: 60%;
+  margin: auto;
 }
 
 #form-submit:hover:not(#form-submit:disabled) {
@@ -122,3 +117,4 @@ a {
 .hide {
   display: none;
 }
+

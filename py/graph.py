@@ -3,7 +3,13 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.colors as pcolors
 import networkx.algorithms.community as community
-from pyodide.http import open_url
+import numpy as np
+
+try:
+    from pyodide.http import open_url
+except ModuleNotFoundError:
+    def open_url(url):
+        return url
 
 
 class ScreenSizes:
@@ -76,15 +82,14 @@ class Graph:
     def draw_communities(self):
         return self.__draw(self.communities, self.communities_colors)
 
-    def detect_communities(self):
+    def detect_communities(self, mat_color_map="tab20c"):
         communities = community.louvain_communities(self.subgraph.to_undirected())
         self.partition = {com: index for index, item in enumerate(communities) for com in item}
 
         nx.set_node_attributes(self.subgraph, self.partition, "community")
         self.communities = self.subgraph.subgraph(self.partition.keys())
 
-        color_map = plt.colormaps["tab10"]
-
+        color_map = pcolors.ListedColormap(list(set(tuple(item) for item in np.random.rand(100, 3))))
         self.communities_colors = [color_map(self.partition[node]) for node in self.communities.nodes()]
 
         communities = [
@@ -100,4 +105,5 @@ def load_graph(nodes: int):
     return Graph(open_url(
         'https://raw.githubusercontent.com/oliverTuesta/reddit-communities/main/soc-redditHyperlinks-title-5000.tsv'),
         'SOURCE_SUBREDDIT', 'TARGET_SUBREDDIT', n_nodes=nodes)
+
 
