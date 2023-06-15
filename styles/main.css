@@ -21,11 +21,13 @@ body {
 
 #graph-area {
   flex: 0.9;
+  overflow: hidden;
 }
 
-#graph-area > img {
-  width: 95%;
-  max-height: 95%;
+#graph  img {
+  margin: 0;
+  height: 100%;
+  width: auto;
 }
 
 .footer, .form {
@@ -54,7 +56,7 @@ body {
   margin-bottom: 10px;
 }
 
-.form-item > input[type="number"] {
+.form-item > input[type="number"], .form-item > select {
   min-width: 8rem;
   padding: 10px;
   border: 1px solid #ccc;

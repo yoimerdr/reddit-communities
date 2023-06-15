@@ -3,12 +3,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reddit Communities Detection</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+  <script defer src="/js/jquery-1.8.3.min.js"></script>
+  <script defer src="/js/jquery.elevateZoom-3.0.8.min.js"></script>
 
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <script src="/js/main.js"></script>
+  <py-config>
+    packages = ["matplotlib", "pandas", "networkx", "scipy"]
+    [[fetch]]
+    files = ["./py/graph.py", "./py/__init__.py", "./py/web.py", "./py/main.py"]
 
-
+  </py-config>
 
 </head>
 <body>
@@ -17,16 +26,33 @@
       <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
       <label for="number">Insert a number (50 - 5000)</label>
     </div>
-
     <div class="form-item">
-      <button id="form-submit" type="button">
+      <select name="size" id="size" >
+        <option value="S600P">600PX</option>
+        <option value="S720P" selected>720PX</option>
+        <option value="S1080P">1080PX</option>
+        <option value="S1440P">1440P</option>
+        <option value="S4K">4K</option>
+      </select>
+      <label for="size">Select a image size</label>
+    </div>
+    <div class="form-item">
+      <select name="zoom" id="zoom">
+        <option value="use">Use</option>
+        <option value="not-use" selected>Not Use</option>
+      </select>
+      <label for="zoom">Use zoom?</label>
+    </div>
+    <div class="form-item">
+      <button py-onclick="run()" id="form-submit" type="button">
         Generate
       </button>
     </div>
   </form>
 
   <div id="graph-area" class="body-item">
-    <div class="spinner hide"></div>
+    <div id="graph"></div>
+    <div id="graph-spinner" class="spinner hide"></div>
   </div>
 
   <footer class="footer body-item">
@@ -34,10 +60,20 @@
       Reddit Communities Detector.
     <br />
     All rights reserved. &copy;
-    <a href="/">Source code</a>
+    <a href="https://github.com/Yoimer-Davila/reddit-communities" target="_blank">Source code</a>
     </div>
   </footer>
 
-
+   <py-script>
+      from py import run_program, size_switch_option
+      from js import addZoomToGraph
+      from pyscript import Element
+      def run():
+          div_target = "graph"
+          option = str(Element("size").value)
+          enable_zoom = str(Element("zoom").value) == "use"
+          display(run_program(int(Element("number").value), image_size=size_switch_option(option)), target=div_target, append=False)
+          addZoomToGraph(enable_zoom)
+  </py-script>
 </body>
 </html>
