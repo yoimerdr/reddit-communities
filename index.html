@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-item">
-      <button py-onclick="run()" id="form-submit" type="button">
+      <button onclick="generate()" id="form-submit" type="button">
         Generate
       </button>
     </div>
@@ -89,7 +89,8 @@
       from py import run_program, size_switch_option
       from js import addZoomToGraph
       from pyscript import Element
-      def run():
+
+      async def run():
           div_target = "graph"
           option = str(Element("size").value)
           enable_zoom = str(Element("zoom").value) == "use"

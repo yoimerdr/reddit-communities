@@ -9,6 +9,22 @@ function graphZoom() {
   })
 }
 
+function manageHideElement(id, hideClass = "hide") {
+  const element = document.getElementById(id);
+  if(element.classList.contains(hideClass))
+    element.classList.remove(hideClass)
+  else element.classList.add(hideClass)
+}
+
+async function generate()  {
+  manageHideElement("graph")
+  manageHideElement("graph-spinner")
+  const run = pyscript.interpreter.globals.get('run');
+  await run()
+  manageHideElement("graph-spinner")
+  manageHideElement("graph")
+}
+
 function addCommunities(colors, communities_proxy) {
   const div = document.getElementById("communities");
   div.innerHTML = "";
