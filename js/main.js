@@ -43,12 +43,20 @@ function addCommunities(colors, communities_proxy) {
 
   function getCommunities(i, color="white") {
     if(i > communities.length || i < 0)
-      return ""
+      return "";
     let listItems = communities[i].map(item => `<li>${item}</li>`).join("\n");
-    let grid = ""
+    let grid = "";
     if (communities[i].length >= 35)
-      grid = "display: grid; grid-template-columns: 1fr 1fr 1fr"
-    return `<ul style="color: ${color}; list-style-type: none; padding: 2px; ${grid}">${listItems}</ul>`
+      grid = "display: grid; grid-template-columns: 1fr 1fr 1fr";
+    if(communities[i].length >= 120)
+      grid += " 1fr";
+    if(communities[i].length >= 180)
+      grid += " 1fr";
+    if(communities[i].length >= 240)
+      grid += " 1fr";
+    if(communities[i].len >= 300)
+      grid += " 1fr"
+    return `<ul style="color: ${color}; list-style-type: none; padding: 2px; ${grid}">${listItems}</ul>`;
   }
   for(let color of colors) {
     const community = document.createElement("div")
@@ -61,7 +69,7 @@ function addCommunities(colors, communities_proxy) {
         attach: "#" + community.id,
         theme: "TooltipDark",
         position: {
-            x: "right",
+            x: "left",
             y: "center"
         },
         outside: "x",

@@ -89,7 +89,7 @@ class Graph:
         nx.set_node_attributes(self.subgraph, self.partition, "community")
         self.communities = self.subgraph.subgraph(self.partition.keys())
 
-        color_map = pcolors.ListedColormap(list(set(tuple(item) for item in np.random.rand(100, 3))))
+        color_map = pcolors.ListedColormap(list(set(tuple(item) for item in np.random.rand(500, 3))))
         self.communities_colors = [color_map(self.partition[node]) for node in self.communities.nodes()]
 
         communities = [
