@@ -32,56 +32,66 @@
 
 </head>
 <body>
-  <div class="form body-item">
-    <div class="form-item">
-      <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
-      <label for="number">Insert a number (50 - 5000)</label>
+    <div class="form body-item">
+
+        <div class="container">
+            <div class="left">
+                <div class="options">
+                    <div class="form-item">
+                        <input type="number" id="number" name="number" value="50" min="50" max="5000" required>
+                        <label for="number">Insert a number (50 - 5000)</label>
+                    </div>
+                    <div class="form-item">
+                        <select name="size" id="size" >
+                            <option value="S600P">600PX</option>
+                            <option value="S720P" selected>720PX</option>
+                            <option value="S1080P">1080PX</option>
+                            <option value="S1440P">1440P</option>
+                            <option value="S4K">4K</option>
+                        </select>
+                        <label for="size">Select a image size</label>
+                    </div>
+
+                    <div class="form-item">
+                        <select name="zoom" id="zoom">
+                            <option value="use">Use</option>
+                            <option value="not-use" selected>Not Use</option>
+                        </select>
+                        <label for="zoom">Use zoom?</label>
+                    </div>
+
+                    <div class="form-item">
+                        <button onclick="generate()" id="form-submit" type="button">
+                            Generate
+                        </button>
+                    </div>
+                </div>            
+                <div id="graph-area" class="body-item">
+                    <div id="graph"></div>
+                    <div id="graph-spinner" class="spinner hide"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div>
+                    <div class="form-item" id="communities-div">
+                        <div id="communities">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-item">
-      <select name="size" id="size" >
-        <option value="S600P">600PX</option>
-        <option value="S720P" selected>720PX</option>
-        <option value="S1080P">1080PX</option>
-        <option value="S1440P">1440P</option>
-        <option value="S4K">4K</option>
-      </select>
-      <label for="size">Select a image size</label>
-    </div>
 
-    <div class="form-item">
-      <select name="zoom" id="zoom">
-        <option value="use">Use</option>
-        <option value="not-use" selected>Not Use</option>
-      </select>
-      <label for="zoom">Use zoom?</label>
-    </div>
 
-    <div class="form-item">
-      <button onclick="generate()" id="form-submit" type="button">
-        Generate
-      </button>
-    </div>
-
-    <div class="form-item" id="communities-div">
-      <div id="communities">
-      </div>
-    </div>
-  </div>
-
-  <div id="graph-area" class="body-item">
-    <div id="graph"></div>
-    <div id="graph-spinner" class="spinner hide"></div>
-  </div>
-
-  <footer class="footer body-item">
-    <div>
-      Reddit Communities Detector.
-    <br />
-    All rights reserved. &copy;
-    <a href="https://github.com/Yoimer-Davila/reddit-communities" target="_blank">Source code</a>
-    </div>
-  </footer>
+    <footer class="footer body-item">
+        <div>
+            Reddit Communities Detector.
+            <br />
+            All rights reserved. &copy;
+            <a href="https://github.com/Yoimer-Davila/reddit-communities" target="_blank">Source code</a>
+        </div>
+    </footer>
 
    <py-script>
       from py import run_program, size_switch_option
