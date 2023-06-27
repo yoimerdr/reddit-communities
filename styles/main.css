@@ -1,38 +1,44 @@
 body {
-    font-size: 1rem;
-    background-color: #1f1f1f;
-    color: white;
-    height: 100vh;
-    margin: 0;
+  font-size: 1rem;
+  background-color: #1f1f1f;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 10fr 1fr;
+  /*overflow-x: hidden;*/
 }
 
 .options-item {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#communities-div {
+
 }
 
 #communities {
-    display: grid;
-    max-height: 100vh;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    overflow-y: scroll;
+  display: grid;
+  max-height: 80vh;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  overflow-y: scroll;
 }
 
 .footer,
 #graph-area {
-    padding: 1rem;
-    justify-content: center;
-    text-align: center;
+  padding: 1rem;
+  justify-content: center;
+  text-align: center;
+  display: grid;
+  max-height: 10%;
 }
 
-#graph-area {
-    overflow: hidden;
-}
 
 #graph img {
-    max-width: 100%;
+  max-width: 90%;
 }
 
 .footer,
@@ -40,97 +46,131 @@ body {
 }
 
 .form {
-    padding: 5px 10px;
-    border-radius: 5px;
-    gap: 1.5rem;
-    display: grid;
-    align-items: center;
-    /*grid-template-columns: repeat(4, 1fr) 2fr;*/
+  padding: 5px 10px;
+  border-radius: 5px;
+  gap: 1.5rem;
+  display: grid;
+  align-items: center;
+  /*grid-template-columns: repeat(4, 1fr) 2fr;*/
 }
 
 .options {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 .form-item {
 }
 
 .form-item > label {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .form-item > input[type="number"],
 .form-item > select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #form-submit {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px;
-    border: 1px solid #4caf50;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 60%;
-    margin: auto;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: 1px solid #4caf50;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 60%;
+  margin: auto;
 }
 
 #form-submit:hover:not(#form-submit:disabled) {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 #form-submit:disabled {
-    background-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 a {
-    color: #5da7ff;
-    text-decoration: none;
+  color: #5da7ff;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid #ccc;
-    border-top-color: #333;
-    animation: spinner 0.8s linear infinite;
+.graph-spinner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border-top-color: #333;
+  animation: spinner 0.8s linear infinite;
 }
 
-@keyframes spinner {
-    to {
-        transform: rotate(360deg);
-    }
+@keyframes graph-spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 /*container with two columns 3/4 and 1/4*/
 .container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 1rem;
-    height: 100%;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 1rem;
+  height: 100%;
 }
+
+
 
 .left {
 }
 
 .right {
+
+}
+
+@media only screen and (max-width: 1450px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  #communities {
+    grid-template-columns: repeat(6, 1fr)
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #communities {
+    grid-template-columns: repeat(5, 1fr)
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  #communities {
+    grid-template-columns: repeat(4, 1fr)
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  #communities {
+    grid-template-columns: repeat(3, 1fr)
+  }
 }
